@@ -63,13 +63,9 @@ class ImageGeneratorServer {
               imageName: {
                 type: "string",
                 description: "The filename for the image excluding any extensions."
-              },
-              shouldSaveToFile: {
-                type: "boolean",
-                description: "Should the image be saved on the user's computer. The 'imageName' arguments is expected when this is true."
               }
             },
-            required: ["prompt"]
+            required: ["prompt", "imageName"]
           }
         }]
       })
@@ -92,20 +88,16 @@ class ImageGeneratorServer {
           )
         };
         
-        const { prompt, imageName, shouldSaveToFile } = request.params.arguments;
+        const { prompt, imageName } = request.params.arguments;
         const base64 = await new ImageGenerator().generateImage(prompt);
-        let filepath: string | null = null;
-        if (shouldSaveToFile && imageName) {
-
-          const fileName = `${imageName.replace(/\..*$/, '')}.png`;
-          filepath = await imageSaver.saveBase64(fileName, base64!);
-        }
+        const fileName = `${imageName.replace(/\..*$/, '')}.png`;
+        const filepath = await imageSaver.saveBase64(fileName, base64!);
 
         return {
           toolResult: {
-            uri: !!filepath ? `file://${filepath}` : `data:image/png;base64, ${base64}`,
+            uri: `file://${filepath}`,
             type: 'image',
-            data: base64
+            mimeType: 'image/png'
           }
         }
       }

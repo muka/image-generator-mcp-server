@@ -9,7 +9,7 @@ This is a TypeScript-based MCP server that implements image generation using **O
 ### Tools
 - `generate_image` - Generate an image for given prompt
   - Takes `prompt` as a required parameter
-  - Takes optional `shouldSaveToFile` and `imageName` to save the generated image in a `generated-images` directory on your desktop
+  - Takes `imageName` as a required parameter to save the generated image in a `generated-images` directory on your desktop
 
 ## Development
 

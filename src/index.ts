@@ -97,9 +97,8 @@ class ImageGeneratorServer {
         return {
           content: [
             {
-              type: "image",
-              data: base64,
-              mimeType: "image/png",
+              type: "text",
+              text: `Generated image at path ${filepath}`
             },
           ],          
         }

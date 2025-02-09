@@ -46,7 +46,7 @@ export class FileSaver {
 
     static CreateDesktopFileSaver(directory: string) {
         directory = FileSaver.sanitizeFilename(directory);
-        const desktopPath = path.join(homedir(), 'Desktop');
+        const desktopPath = process.env.SAVE_PATH || path.join(homedir(), 'Desktop');
         const dirPath = path.join(desktopPath, directory);
         return new FileSaver(dirPath);
     }

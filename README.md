@@ -40,7 +40,8 @@ On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
   "mcpServers": {
     "command": "image-generator",
       "env": {
-        "OPENAI_API_KEY": "<your-openai-api-key>"
+        "OPENAI_API_KEY": "<your-openai-api-key>",
+        "SAVE_PATH": "<filesystem path where to save images, defaults to ~/Desktop>",
     }
   }
 }

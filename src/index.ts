@@ -110,7 +110,7 @@ class ImageGeneratorServer {
     
     // Although this is just an informative message, we must log to stderr,
     // to avoid interfering with MCP communication that happens on stdout
-    console.error("Weather MCP server running on stdio");
+    console.error("Image Generator MCP server running on stdio");
   }
 }
 

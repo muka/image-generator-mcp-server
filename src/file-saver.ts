@@ -1,6 +1,6 @@
 import * as fs from 'fs';
-import * as path from 'path';
 import { homedir } from 'os';
+import * as path from 'path';
 
 export class FileSaver {
     constructor(private dirPath: string) {
@@ -45,9 +45,11 @@ export class FileSaver {
     }
 
     static CreateDesktopFileSaver(directory?: string) {
-        directory = directory || process.env.SAVE_PATH || path.join(homedir(), 'Desktop', 'generated-images')
-        directory = FileSaver.sanitizeFilename(directory);
-        const dirPath = path.join(directory);
-        return new FileSaver(dirPath);
+        if (directory) {
+            directory = FileSaver.sanitizeFilename(directory);
+        } else {
+            directory = directory || process.env.SAVE_PATH || path.join(homedir(), 'Desktop', 'generated-images')
+        }
+        return new FileSaver(directory);
     }
 }

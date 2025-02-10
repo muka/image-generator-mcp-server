@@ -15,7 +15,7 @@ import { FileSaver } from "./file-saver.js";
 
 dotenv.config();
 
-const imageSaver = FileSaver.CreateDesktopFileSaver('generated-images');
+const imageSaver = FileSaver.CreateDesktopFileSaver();
 
 class ImageGeneratorServer {
   private server: Server;

@@ -44,10 +44,10 @@ export class FileSaver {
         return sanitized;
     }
 
-    static CreateDesktopFileSaver(directory: string) {
+    static CreateDesktopFileSaver(directory?: string) {
+        directory = directory || process.env.SAVE_PATH || path.join(homedir(), 'Desktop', 'generated-images')
         directory = FileSaver.sanitizeFilename(directory);
-        const desktopPath = process.env.SAVE_PATH || path.join(homedir(), 'Desktop');
-        const dirPath = path.join(desktopPath, directory);
+        const dirPath = path.join(directory);
         return new FileSaver(dirPath);
     }
 }
